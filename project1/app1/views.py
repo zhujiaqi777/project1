@@ -13,7 +13,7 @@ session = db.get_session()
 def index(request):
     query = session.query(User)
     rows = query.all_dict()
-    print rows
+    # print rows
 
     # return HttpResponse('<h1>hello</h1>')
     return render(request, 'base.html', {'rows': rows})
