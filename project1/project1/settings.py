@@ -47,6 +47,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'sqlalchemy_django.middleware.SqlAlchemyMiddleware',
 )
 
 ROOT_URLCONF = 'project1.urls'
@@ -59,11 +60,29 @@ WSGI_APPLICATION = 'project1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'test',
+        'USER': 'postgres',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
+
+SQLALCHEMY_DATABASES = {
+    'linkflood': {
+        'SQLALCHEMY_DATABASE_URI': 'postgresql+psycopg2://postgres:123456@127.0.0.1:5432/test',
+        'SQLALCHEMY_NATIVE_UNICODE': None,
+        'SQLALCHEMY_ECHO': True,
+        'SQLALCHEMY_RECORD_QUERIES': None,
+        'SQLALCHEMY_POOL_SIZE': 20,
+        'SQLALCHEMY_POOL_TIMEOUT': None,
+        'SQLALCHEMY_POOL_RECYCLE': None,
+        'SQLALCHEMY_MAX_OVERFLOW': None,
+        'SQLALCHEMY_COMMIT_ON_TEARDOWN': True
+    }
+}
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
